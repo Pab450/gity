@@ -32,4 +32,4 @@ Gity has been created from my personal experience in web development, so it is p
 > Gity is a simple and powerful tool, it allows to create quickly a website. Gity is an open source static website generator available on Github. If you have any questions, suggestions or comments, feel free to open an issue on Github.
 ## Links
 - [Documentation](#soon)
-- [Github](#soon)
+- [Github](https://github.com/Pab450/gity)
