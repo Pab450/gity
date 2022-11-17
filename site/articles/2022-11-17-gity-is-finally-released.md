@@ -3,7 +3,7 @@ layout: article
 title: Gity is finally released !
 description: The first version of Gity is finally available, in this article I will present what this new static website generator offers, the benefits of its use and finally its limitations and its evolution in the coming weeks.
 authorName: Pablo
-authorPicture: /images/authors/pablo.png
+authorPicture: images/authors/pablo.png
 date: Tuesday, November 15, 2022
 ---
 ## Introduction

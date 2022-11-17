@@ -2,7 +2,7 @@
 layout: main
 ---#%>
 <div class="flex">
-    <img class="h-12 w-12 rounded-full" src=<%= item.authorPicture %> alt="author's picture">
+    <img class="h-12 w-12 rounded-full" src=<%= site['env.html'].url %><%= item.authorPicture %> alt="author's picture">
 
     <div class="ml-2 flex justify-center flex-col">
         <p class="dark:text-gray-200"><%= item.authorName %></p>

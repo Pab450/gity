@@ -1,4 +1,4 @@
-# Rapidly build modern static websites with GITY
+# Rapidly build modern static websites with GITY 
 
 **Gity is a static website generator. Gity is based on the concept of building websites that do not depend on web servers and databases.**
 
@@ -7,3 +7,5 @@
 Gity is easy to use, yet powerful enough to create complex websites.
 - Gity can be used to create websites of any complexity, from simple one-page sites to large multi-page sites.
 - Gity is also suitable for creating blogs, e-commerce sites, and even web applications.
+
+**gity presentation: [Gity](https://Pab450.github.io/gity/)**
