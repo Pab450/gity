@@ -1,3 +1,3 @@
 ---
-url: http://localhost:4000/
+url: https://Pab450.github.io/gity/
 ---
