@@ -1,0 +1,40 @@
+<div class="pb-6 text-lg font-semibold">
+    <div class="flex pb-4 text-gray-500 dark:text-gray-200">
+        <% Object.values(site).filter(page => page.fileContent).sort((pageA, pageB) => pageA.id - pageB.id).forEach(page => { %>
+            <p class="mx-2 first:hidden">·</p>
+
+            <a class="flex items-center flex-row hover:text-gray-700 dark:hover:text-white" href=/<%= page.filePath %>>
+                <i class="<%= page.icon %> mr-1"></i>
+
+                <p class="uppercase"><%= page.title %></p>
+            </a>
+        <% }); %>
+
+        <div class="ml-auto flex justify-center flex-col">
+            <label class="inline-flex relative items-center cursor-pointer">
+                <input type="checkbox" value="" class="sr-only peer" id="darkMode">
+
+                <div class="w-11 h-6 bg-gray-500 dark:bg-gray-200 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white dark:after:bg-[#212124] after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                
+                <i class="fa-solid fa-circle-half-stroke text-gray-500 dark:text-gray-200 rotate-180 fa-lg ml-2"></i>
+            </label>
+        </div>
+    </div>
+
+    <div class="bg-gray-200 dark:bg-gray-500 w-full h-0.5"></div>
+</div>
+
+<script>
+    const darkMode = document.getElementById('darkMode');
+
+    darkMode.addEventListener('change', () => {
+        localStorage.theme = darkMode.checked ? 'dark' : 'light';
+        document.documentElement.classList = localStorage.theme;
+    });
+
+    const darkTheme = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+
+    document.documentElement.classList = darkTheme ? 'dark' : 'light';
+    localStorage.theme = darkTheme ? 'dark' : 'light';
+    darkMode.checked = darkTheme;
+</script>

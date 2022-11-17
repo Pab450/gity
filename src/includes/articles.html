@@ -1,0 +1,23 @@
+<div class="space-y-3 pt-6">
+    <p class="font-extrabold text-4xl text-gray-900 dark:text-gray-200">Latest articles</p>
+
+    <p class="text-base text-gray-500">A blog created with Gity</p>
+</div>
+
+<div class="flex flex-col">
+    <% Object.values(site.articles).filter(article => article.fileContent).forEach(article => { %>
+        <div class="py-12 space-y-3">
+            <p class="text-base font-medium text-gray-500"><%= article.date %></p>
+
+            <p class="text-2xl font-bold text-gray-700 dark:text-gray-200"><%= article.title %></p>
+
+            <p class="prose max-w-none text-gray-500"><%= article.description %></p>
+
+            <p>
+                <a href="/<%= article.filePath %>" class="text-base font-medium text-gray-700 dark:text-gray-200">Read more →</a>
+            </p>
+        </div>
+        
+        <div class="last:hidden bg-gray-200 dark:bg-gray-500 w-full h-0.5"></div>
+    <% }); %>
+</div>

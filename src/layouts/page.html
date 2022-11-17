@@ -1,0 +1,11 @@
+<%#---
+layout: main
+---#%>
+<article class="mx-auto prose lg:prose-lg dark:prose-invert">
+    <%- fileContent %>
+    <div class="not-prose">
+        <% if(item.article) { %> 
+            <%- include('articles') %>
+        <% } %>
+    </div>
+</article>
