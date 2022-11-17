@@ -3,7 +3,7 @@
         <% Object.values(site).filter(page => page.fileContent).sort((pageA, pageB) => pageA.id - pageB.id).forEach(page => { %>
             <p class="mx-2 first:hidden">·</p>
 
-            <a class="flex items-center flex-row hover:text-gray-700 dark:hover:text-white" href=/<%= page.filePath %>>
+            <a class="flex items-center flex-row hover:text-gray-700 dark:hover:text-white" href="<%= site['env.html'].url %><%= page.filePath %>">
                 <i class="<%= page.icon %> mr-1"></i>
 
                 <p class="uppercase"><%= page.title %></p>
