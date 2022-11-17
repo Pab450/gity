@@ -10,4 +10,4 @@ icon: fa-solid fa-person-falling-burst
 > Even if this task seems insurmountable to you, Gity only includes 88 lines of code, you should be able to get out of it quickly.
 > If you have any questions, suggestions or comments, feel free to open an issue on Github.
 
-> **make sure you have read the following article :  [How to use Gity ?](/articles/2022-11-16-how-to-use.html)**
+> **make sure you have read the following article :  [How to use Gity ?](https://pab450.github.io/gity/articles/2022-11-16-how-to-use.html)**
