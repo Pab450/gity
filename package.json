@@ -4,7 +4,7 @@
   "description": "Static site generator for github pages.",
   "main": "index.js",
   "scripts": {
-    "edit": "nodemon . & light-server -s build -w build/**/*",
+    "dev": "nodemon . & light-server -s build -w build/**/*",
     "build": "node ."
   },
   "author": "Pablooo",
