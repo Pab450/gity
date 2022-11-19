@@ -31,7 +31,7 @@ const getFlatMapFromSite = () => {
         let fileContent = fs.readFileSync(filePath);
         let item = {};
 
-        item.filePath = filePath.replace('site/', '').replace(/\.[^.]+$/, (extension) => {
+        item.filePath = filePath.replace(`site${path.sep}`, '').replace(/\.[^.]+$/, (extension) => {
             if(extension == '.md' || extension == '.yml') {
                 fileContent = fileContent.toString();
 
@@ -58,7 +58,7 @@ const getFlatMapFromSite = () => {
 
 const getNestedMapFromSite = () => {
     return getFlatMapFromSite().reduce((map, item) => {
-        const levels = item.filePath.split('/');
+        const levels = item.filePath.split(path.sep);
         let currentMap = map;
 
         for(let i = 0; i < levels.length; i++) {
@@ -87,12 +87,12 @@ fs.rm('build', { recursive: true }, () => {
         let { layout, fileContent } = item;
 
         while(layout) {
-            const layoutContent = fs.readFileSync(`src/layouts/${layout}.html`, 'utf8');
+            const layoutContent = fs.readFileSync(path.join('src', 'layouts', `${layout}.html`), 'utf8');
             
             layout = getAttributesFromString(layoutContent)?.layout;
             fileContent = ejs.render(layoutContent, { fileContent, site, item }, {
                 includer: file => {
-                    return { filename: `src/includes/${file}.html` };
+                    return { filename: path.join('src', 'includes', `${file}.html`) };
                 }
             });
 
@@ -104,13 +104,13 @@ fs.rm('build', { recursive: true }, () => {
                 });
         }
 
-        mkdirAndWriteFile(`build/${item.filePath}`, fileContent);
+        mkdirAndWriteFile(path.join('build', `${item.filePath}`), fileContent);
     });
 
-    const cssContent = fs.readFileSync('src/css/main.css', 'utf8')
+    const cssContent = fs.readFileSync(path.join('src', 'css', 'main.css'), 'utf8')
 
     postcss([tailwindcss, cssnano]).process(cssContent, { from: undefined }).then(({ css }) => {
-        mkdirAndWriteFile('build/css/main.css', css);
+        mkdirAndWriteFile(path.join('build', 'css', 'main.css'), css);
     });
 
     console.log(`Build completed in ${(process.hrtime(hrStart)[1] / 1e6).toFixed(2)}ms`);
