@@ -1,7 +1,7 @@
 {
   "name": "gity",
-  "version": "0.0.1",
-  "description": "Light and fast static site generator.",
+  "version": "0.0.2",
+  "description": "Static site generator for github pages.",
   "main": "index.js",
   "scripts": {
     "edit": "nodemon . & light-server -s build -w build/**/*",
@@ -10,10 +10,14 @@
   "author": "Pablooo",
   "license": "ISC",
   "dependencies": {
+    "cssnano": "^5.1.14",
     "ejs": "^3.1.8",
     "html-minifier": "^4.0.0",
     "js-yaml": "^4.1.0",
-    "snarkdown": "^2.0.0"
+    "postcss": "^8.4.19",
+    "snarkdown": "^2.0.0",
+    "tailwindcss": "^3.2.4",
+    "@tailwindcss/typography": "^0.5.8"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

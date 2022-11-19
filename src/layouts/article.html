@@ -2,7 +2,7 @@
 layout: main
 ---#%>
 <div class="flex">
-    <img class="h-12 w-12 rounded-full" src=<%= site['env.html'].url %><%= item.authorPicture %> alt="author's picture">
+    <img class="h-12 w-12 rounded-full" src=<%= site.env.url %><%= item.authorPicture %> alt="author's picture">
 
     <div class="ml-2 flex justify-center flex-col">
         <p class="dark:text-gray-200"><%= item.authorName %></p>
@@ -17,7 +17,7 @@ layout: main
     </div>
 
     <div class="ml-auto flex justify-center flex-col">
-        <a href="https://twitter.com/intent/tweet?text=“<%= item.title %>” by <%= item.authorName %>&url=<%= site['env.html'].url %><%= item.filePath %>"target="_blank" rel="noopener noreferrer">
+        <a href="https://twitter.com/intent/tweet?text=“<%= item.title %>” by <%= item.authorName %>&url=<%= site.env.url %><%= item.filePath %>"target="_blank" rel="noopener noreferrer">
             <i class="text-gray-500 hover:text-blue-500 fa-brands fa-twitter fa-xl"></i>
         </a>
     </div>

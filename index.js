@@ -7,6 +7,10 @@ const jsyaml = require('js-yaml');
 const snarkdown = require('snarkdown');
 const minify = require('html-minifier').minify;
 
+const postcss = require('postcss');
+const cssnano = require('cssnano');
+const tailwindcss = require('tailwindcss');
+
 const getFilesPathRecursivelyFromDirectory = directoryPath => {
     return fs.readdirSync(directoryPath, { withFileTypes: true }).reduce((files, dirent) => {
         const normalizedPath = path.join(directoryPath, dirent.name);
@@ -25,14 +29,30 @@ const getAttributesFromString = string => {
 const getFlatMapFromSite = () => {
     return getFilesPathRecursivelyFromDirectory('site').map(filePath => {
         let fileContent = fs.readFileSync(filePath);
+        let item = {};
 
-        return {
-            filePath: filePath.replace('site/', '').replace('.md', '.html'),
-            ...(filePath.endsWith('.md') ? {
-                fileContent: snarkdown(fileContent.toString().replace(/---(.*?)---/s, '')),
-                ...getAttributesFromString(fileContent.toString())
-            } : { fileContent })
-        }
+        item.filePath = filePath.replace('site/', '').replace(/\.[^.]+$/, (extension) => {
+            if(extension == '.md' || extension == '.yml') {
+                fileContent = fileContent.toString();
+
+                Object.assign(item, getAttributesFromString(fileContent));
+            }
+
+            if(extension == '.md') {
+                item.fileContent = snarkdown(fileContent.replace(/---(.*?)---/s, ''));
+
+                return '.html';
+            }
+
+            if(extension == '.yml')
+                return '';
+
+            item.fileContent = fileContent;
+
+            return extension;
+        });
+
+        return item;
     });
 };
 
@@ -52,6 +72,11 @@ const getNestedMapFromSite = () => {
 
         return map;
     }, {});
+};
+
+const mkdirAndWriteFile = (filePath, fileContent) => {
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+    fs.writeFileSync(filePath, fileContent);
 };
 
 fs.rm('build', { recursive: true }, () => {
@@ -76,13 +101,17 @@ fs.rm('build', { recursive: true }, () => {
                     collapseWhitespace: true,
                     removeComments: true,
                     minifyJS: true,
-                    minifyCSS: true
                 });
         }
 
-        fs.mkdirSync(path.dirname(`build/${item.filePath}`), { recursive: true });
-        fs.writeFileSync(`build/${item.filePath}`, fileContent);
+        mkdirAndWriteFile(`build/${item.filePath}`, fileContent);
     });
 
-    console.log(`Build completed in ${process.hrtime(hrStart)[1] / 1000000}ms`);
+    const cssContent = fs.readFileSync('src/css/main.css', 'utf8')
+
+    postcss([tailwindcss, cssnano]).process(cssContent, { from: undefined }).then(({ css }) => {
+        mkdirAndWriteFile('build/css/main.css', css);
+    });
+
+    console.log(`Build completed in ${(process.hrtime(hrStart)[1] / 1e6).toFixed(2)}ms`);
 });
