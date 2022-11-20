@@ -4,22 +4,22 @@
   "description": "Static site generator for github pages.",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon . & light-server -s build -w build/**/*",
+    "dev": "light-server -s build -w 'src/**/*, site/**/* # npm run build # reload'",
     "build": "node ."
   },
   "author": "Pablooo",
   "license": "ISC",
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.8",
     "cssnano": "^5.1.14",
     "ejs": "^3.1.8",
     "html-minifier": "^4.0.0",
     "js-yaml": "^4.1.0",
     "postcss": "^8.4.19",
     "snarkdown": "^2.0.0",
-    "tailwindcss": "^3.2.4",
-    "@tailwindcss/typography": "^0.5.8"
+    "tailwindcss": "^3.2.4"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "light-server": "^2.9.1"
   }
 }
