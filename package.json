@@ -4,7 +4,7 @@
   "description": "Static site generator for github pages.",
   "main": "index.js",
   "scripts": {
-    "dev": "light-server -s build -w 'src/**/*, site/**/* # npm run build # reload'",
+    "dev": "light-server -s build -w \"src/**/*, site/**/* # npm run build # reload \"",
     "build": "node ."
   },
   "author": "Pablooo",
